@@ -67,6 +67,7 @@ boxplots$Sepal.Width
 
 # _example 2. run kmeans segmentation for different K values over the same data  --------
 
+set.seed(1)
 walk(.x = 2:5,
     .f = ~idt[, eval(paste0(.x, 'clusters')) := kmeans(keep(.SD, is.numeric), centers = .x)$cluster])
 
@@ -74,7 +75,6 @@ walk(.x = 2:5,
 install.packages('openxlsx')
 library(openxlsx)
 
-set.seed(1)
 
 cluster_cols <- colnames(idt)[grepl(x = colnames(idt), pattern = 'clusters')] %>%
   set_names(.)
